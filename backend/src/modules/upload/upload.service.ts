@@ -10,6 +10,9 @@ export class UploadService {
   ) {}
 
   async processImage(file: Express.Multer.File) {
+    if (file.mimetype === 'image/gif') {
+      throw new Error('GIF files are not supported');
+    }
     // 1. Subir a S3
     const { url, fileName } = await this.storageService.uploadFile(file);
 
