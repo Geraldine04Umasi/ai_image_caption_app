@@ -11,7 +11,7 @@ interface UploadZoneProps {
   onClear: () => void;
 }
 
-const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZoneProps) {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -20,7 +20,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
   const handleFile = useCallback(
     (file: File) => {
       if (!ACCEPTED_TYPES.includes(file.type)) {
-        alert("Please upload a valid image file (JPG, PNG, WebP, or GIF)");
+        alert("Please upload a valid image file (JPG, PNG, or WebP)");
         return;
       }
 
@@ -110,7 +110,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
           </p>
           {!selectedFile && (
             <p className="mt-1 text-sm text-muted-foreground">
-              Supports JPG, PNG, WebP, GIF
+              Supports JPG, PNG, WebP
             </p>
           )}
         </div>
@@ -136,7 +136,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
         <input
           id="file-input"
           type="file"
-          accept=".jpg,.jpeg,.png,.webp,.gif"
+          accept=".jpg,.jpeg,.png,.webp"
           onChange={handleInputChange}
           className="sr-only"
         />
