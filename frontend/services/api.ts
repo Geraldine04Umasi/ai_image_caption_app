@@ -1,6 +1,8 @@
+import type { CaptionResult } from "@/types/caption";
+
 const API_URL = "http://localhost:3001";
 
-export async function uploadImage(file: File) {
+export async function uploadImage(file: File): Promise<CaptionResult> {
   const formData = new FormData();
   formData.append("file", file);
 
@@ -8,6 +10,10 @@ export async function uploadImage(file: File) {
     method: "POST",
     body: formData,
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to analyze image. Please try again.");
+  }
 
   return res.json();
 }
