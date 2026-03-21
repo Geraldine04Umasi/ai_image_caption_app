@@ -16,10 +16,6 @@ export class StorageService {
 
     await s3.send(command);
 
-    console.log('REGION:', process.env.AWS_REGION);
-    console.log('BUCKET:', process.env.AWS_BUCKET_NAME);
-
-
     return {
       fileName,
       url: `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`,
