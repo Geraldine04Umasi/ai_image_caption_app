@@ -12,8 +12,14 @@ interface UploadZoneProps {
 }
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_SIZE_MB = 5;
+const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
-export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZoneProps) {
+export function UploadZone({
+  onFileSelect,
+  selectedFile,
+  onClear,
+}: UploadZoneProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -24,6 +30,11 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
         return;
       }
 
+      if (file.size > MAX_SIZE_BYTES) {
+        alert(`Image must be smaller than ${MAX_SIZE_MB}MB`);
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e) => {
         setPreview(e.target?.result as string);
@@ -31,7 +42,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
       reader.readAsDataURL(file);
       onFileSelect(file);
     },
-    [onFileSelect]
+    [onFileSelect],
   );
 
   const handleDrop = useCallback(
@@ -44,7 +55,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
         handleFile(file);
       }
     },
-    [handleFile]
+    [handleFile],
   );
 
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
@@ -64,7 +75,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
         handleFile(file);
       }
     },
-    [handleFile]
+    [handleFile],
   );
 
   const handleClear = useCallback(() => {
@@ -83,13 +94,13 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
           isDragOver
             ? "border-purple-500 bg-purple-500/10"
             : "border-muted-foreground/30 hover:border-purple-500/50 hover:bg-purple-500/5",
-          selectedFile && "border-purple-500 bg-purple-500/5"
+          selectedFile && "border-purple-500 bg-purple-500/5",
         )}
       >
         <div
           className={cn(
             "flex size-16 items-center justify-center rounded-full transition-colors duration-300",
-            isDragOver ? "bg-purple-500/20" : "bg-muted"
+            isDragOver ? "bg-purple-500/20" : "bg-muted",
           )}
         >
           {selectedFile ? (
@@ -98,7 +109,7 @@ export function UploadZone({ onFileSelect, selectedFile, onClear }: UploadZonePr
             <Upload
               className={cn(
                 "size-8 transition-colors duration-300",
-                isDragOver ? "text-purple-400" : "text-muted-foreground"
+                isDragOver ? "text-purple-400" : "text-muted-foreground",
               )}
             />
           )}

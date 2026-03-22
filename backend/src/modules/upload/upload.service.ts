@@ -10,6 +10,12 @@ export class UploadService {
   ) {}
 
   async processImage(file: Express.Multer.File) {
+    const MAX_SIZE_BYTES = 5 * 1024 * 1024;
+
+    if (file.size > MAX_SIZE_BYTES) {
+      throw new Error('File size exceeds 5MB limit');
+    }
+    
     if (file.mimetype === 'image/gif') {
       throw new Error('GIF files are not supported');
     }
