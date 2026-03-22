@@ -1,6 +1,6 @@
 import type { CaptionResult } from "@/types/caption";
 
-const API_URL = "http://localhost:3001";
+const API_URL = "https://aiimagecaptionapp-production.up.railway.app";
 
 export async function uploadImage(file: File): Promise<CaptionResult> {
   const formData = new FormData();
