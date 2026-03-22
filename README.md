@@ -1,4 +1,4 @@
-# AI Image Caption Generator 🤖✨
+# AI Image Caption Generator 
 
 A full-stack web application that allows users to upload an image and automatically receive an AI-generated caption, tags, and confidence score. Images are stored in the cloud and results are saved locally for history tracking.
 
@@ -21,14 +21,14 @@ A full-stack web application that allows users to upload an image and automatica
 
 ## ✨ Features
 
-- 📤 Drag & drop or click to upload images
-- 🔍 AI-generated caption for each image
-- 🏷️ Automatic tag detection
-- 📊 Confidence score with progress bar
-- 🕓 Local history of analyzed images
-- 📋 One-click caption copy
-- 📱 Fully responsive design
-- 🌙 Dark mode UI
+- Drag & drop or click to upload images
+- AI-generated caption for each image
+- Automatic tag detection
+- Confidence score with progress bar
+- Local history of analyzed images
+- One-click caption copy
+- Fully responsive design
+- Dark mode UI
 
 ## 📁 Project Structure
 ```
